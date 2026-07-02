@@ -9,6 +9,15 @@ class Task:
         self.description = description
         self.priority = priority
 
+    def __str__(self):
+        status = ""
+        if self.done == True:
+            status = "Done"
+        else:
+            status = "pending"
+
+        return f"title       : {self.title}\ndescription : {self.description}\nstatus      : {status}\npriority    : {self.priority}\ncreated_at  : {self.created_at} "
+
     def mark_done(self):
         self.done = True
 
