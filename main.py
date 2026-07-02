@@ -40,9 +40,14 @@ def main():
             print("Task added successfully.")
 
         elif choice == 2:
+            try:
 
-            title = input("Enter a title: ")
-            removed = manager.remove_task(title)
+                task_id = int(input("Enter a id: "))
+            except ValueError:
+                print("id must be number")
+                continue
+
+            removed = manager.remove_task(task_id)
 
             if removed:
                 print("task removed successfully.")
@@ -57,8 +62,14 @@ def main():
                 print("NO tasks.")
 
         elif choice == 4:
-            title = input("Enter a title: ")
-            search = manager.search_task(title)
+            try:
+
+                task_id = int(input("Enter a id: "))
+            except ValueError:
+                print("id must be number")
+                continue
+
+            search = manager.search_task(task_id)
             if search:
                 print(search)
             else:
