@@ -5,23 +5,25 @@ class TaskManager:
 
     def __init__(self):
         self.tasks = []
+        self.next_id = 1
 
     def add_task(self, task):
-
+        task.id = self.next_id
+        self.next_id += 1
         self.tasks.append(task)
 
-    def remove_task(self, title):
+    def remove_task(self, task_id):
 
         for task in self.tasks:
-            if task.title == title:
+            if task.id == task_id:
                 self.tasks.remove(task)
                 return True
         return False
 
-    def search_task(self, title):
+    def search_task(self, task_id):
 
         for task in self.tasks:
-            if task.title == title:
+            if task.id == task_id:
                 return task
         return None
 
