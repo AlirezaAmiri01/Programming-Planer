@@ -14,7 +14,8 @@ def save_tasks(tasks):
             "description",
             "priority",
             "status",
-            "date"
+            "date",
+            "deadline"
 
         ])
 
@@ -25,7 +26,8 @@ def save_tasks(tasks):
                 task.description,
                 task.priority,
                 task.done,
-                task.created_at
+                task.created_at,
+                task.deadline
             ])
 
 
@@ -40,10 +42,12 @@ def load_tasks():
             task = Task(
                 title=row[1],
                 description=row[2],
-                priority=int(row[3])
+                priority=int(row[3]),
+                deadline=date.fromisoformat(row[6])
             )
             task.id = int(row[0])
             task.done = (row[4] == "True")
             task.created_at = date.fromisoformat(row[5])
+
             tasks.append(task)
         return tasks
