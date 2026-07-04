@@ -1,6 +1,7 @@
 from task import Task
 from manager import TaskManager
 import storage
+from datetime import date
 
 
 def menu():
@@ -15,6 +16,8 @@ def menu():
 def main():
     manager = TaskManager()
     loading = storage.load_tasks()
+    for task in loading:
+        TaskManag
 
     while True:
         menu()
@@ -36,8 +39,15 @@ def main():
             except ValueError:
                 print("just number try agin")
                 continue
+            try:
+                deadline_str = input("Enter a deadline(YYYY-MM-DD: )")
+                deadline = date.fromisoformat(deadline_str)
 
-            task = Task(title, description, priority)
+            except ValueError:
+                print("date must be YYYY-MM-DD try agin")
+                continue
+
+            task = Task(title, description, priority, deadline)
             manager.add_task(task)
             print("Task added successfully.")
 
