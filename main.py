@@ -1,5 +1,6 @@
 from task import Task
 from manager import TaskManager
+import storage
 
 
 def menu():
@@ -13,6 +14,7 @@ def menu():
 
 def main():
     manager = TaskManager()
+    loading = storage.load_tasks()
 
     while True:
         menu()
@@ -77,6 +79,7 @@ def main():
 
         elif choice == 0:
             print("bye")
+            storage.save_tasks(manager.tasks)
             break
 
         else:
