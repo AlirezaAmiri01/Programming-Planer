@@ -1,11 +1,13 @@
 import csv
 from task import Task
 from datetime import date
+from pathlib import Path
+FILE_PATH = Path(__file__).parent / "task.csv"
 
 
 def save_tasks(tasks):
 
-    with open("task.csv", "w", encoding="utf-8", newline="") as file:
+    with FILE_PATH.open("w", encoding="utf-8", newline="") as file:
         writer = csv.writer(file)
 
         writer.writerow([
@@ -33,8 +35,22 @@ def save_tasks(tasks):
 
 def load_tasks():
 
+    if not FILE_PATH.exists():
+        with FILE_PATH.open("w", encoding="utf-8", newline="") as file:
+            writer = csv.writer(file)
+
+            writer.writerow([
+                "id",
+                "title",
+                "description",
+                "priority",
+                "status",
+                "date",
+                "deadline"
+            ])
+
     tasks = []
-    with open("task.csv", "r", encoding="utf-8", newline="") as file:
+    with FILE_PATH.open("r", encoding="utf-8", newline="") as file:
         reader = csv.reader(file)
 
         next(reader)
