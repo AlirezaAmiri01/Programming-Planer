@@ -29,3 +29,31 @@ class TaskManager:
 
     def show_tasks(self):
         return self.tasks
+
+    def edit_title(self, task_id, new_title):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.title = new_title
+                return True
+        return False
+
+    def edit_description(self, task_id, new_description):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.description = new_description
+                return True
+        return False
+
+    def edit_priority(self, task_id, new_priority):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.priority = new_priority
+                return True
+        return False
+
+    def edit_deadline(self, task_id, new_deadline):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.deadline = new_deadline
+                return True
+        return False
