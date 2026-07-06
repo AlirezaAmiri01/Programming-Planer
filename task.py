@@ -17,8 +17,18 @@ class Task:
             status = "Done"
         else:
             status = "pending"
+        created = self.created_at.strftime("%Y/%m/%m/%d")
+        deadline = self.deadline.strftime("%Y/%m/%d")
 
-        return f"\nid          : {self.id}\n\ntitle       : {self.title}\n\ndescription : {self.description}\n\nstatus      : {status}\n\npriority    : {self.priority}\n\ncreated_at  : {self.created_at}\n\ndeadline    : {self.deadline} "
+        return (
+            f"id          : {self.id}\n"
+            f"title       : {self.title}\n"
+            f"description : {self.description}\n"
+            f"status      : {status}\n"
+            f"priority    : {self.priority}\n"
+            f"created_at  : {created}\n"
+            f"deadline    : {deadline}"
+        )
 
     def mark_done(self):
         self.done = True

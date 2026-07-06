@@ -13,6 +13,7 @@ def menu():
     print("5.Edit Task\n")
     print("6.Mark Task Done\n")
     print("7.Mark Task Pending\n")
+    pritn("8.Sort Tasks")
     print("0.Exit\n")
 
 
@@ -24,6 +25,15 @@ def edit_menu():
     print("4.Edit Deadline\n")
     print("5.Edit All\n")
     print("6.Cancel\n")
+
+
+def sort_menu():
+    print("=====WELCOME TO SORT MENU=====\n")
+    print("1.Sort Task By Priority\n")
+    print("2.Sort Task By Title\n")
+    print("3.Sort Task By Created Date \n")
+    print("4.Sort Task By Deadline\n")
+    print("5.Cancel\n")
 
 
 def main():
@@ -253,8 +263,44 @@ def main():
             storage.save_tasks(manager.tasks)
             break
 
+        elif choice == 8:
+            sort_menu()
+            try:
+                sort_choice = int(input("Enter your choice(number): "))
+            except ValueError:
+                print("just Enter a number")
+                continue
+
+            if sort_choice == 1:
+                manager.sort_by_priority()
+                print("tasks sorted by priority\n")
+                for task in manager.tasks:
+                    print(task)
+
+            elif sort_choice == 2:
+                manager.sort_by_title()
+                print("tasks sorted by title")
+                for task in manager.tasks:
+                    print(task)
+
+            elif sort_choice == 3:
+                manager.sort_by_create_at()
+                for task in manager.tasks:
+                    print(task)
+
+            elif sort_choice == 4:
+                manager.sort_by_deadline()
+                for task in manager.tasks:
+                    print(task)
+
+            elif sort_choice == 5:
+                print("sort task cancled")
+                continue
+            else:
+                print("Enter number from 1 to 5")
+
         else:
-            print("please just Enter a number from 0 to 7")
+            print("please just Enter a number from 0 to 8")
 
 
 if __name__ == "__main__":
