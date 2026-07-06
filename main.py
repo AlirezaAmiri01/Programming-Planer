@@ -13,7 +13,7 @@ def menu():
     print("5.Edit Task\n")
     print("6.Mark Task Done\n")
     print("7.Mark Task Pending\n")
-    pritn("8.Sort Tasks")
+    print("8.Sort Tasks")
     print("0.Exit\n")
 
 
