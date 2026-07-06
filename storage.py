@@ -18,16 +18,17 @@ def save_tasks(tasks):
             "status",
             "date",
             "deadline"
-
         ])
 
         for task in tasks:
+            status = "Done" if task.done else "Pending"
+
             writer.writerow([
                 task.id,
                 task.title,
                 task.description,
                 task.priority,
-                task.done,
+                status,
                 task.created_at,
                 task.deadline
             ])
@@ -62,7 +63,7 @@ def load_tasks():
                 deadline=date.fromisoformat(row[6])
             )
             task.id = int(row[0])
-            task.done = (row[4] == "True")
+            task.done = (row[4] == "Done")
             task.created_at = date.fromisoformat(row[5])
 
             tasks.append(task)
