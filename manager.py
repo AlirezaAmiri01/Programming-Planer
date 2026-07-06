@@ -57,3 +57,19 @@ class TaskManager:
                 task.deadline = new_deadline
                 return True
         return False
+
+    def mark_task_done(self, task_id):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.mark_done()
+                return True
+
+        return False
+
+    def mark_task_pending(self, task_id):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.mark_pending()
+                return True
+
+        return False

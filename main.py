@@ -5,23 +5,25 @@ from datetime import date
 
 
 def menu():
-    print("=====WLCOME TO MENU=====")
-    print("1.Add Task")
-    print("2.Remove Task")
-    print("3.Show Tasks")
-    print("4.Search Task")
-    print("5.Edit Task")
-    print("0.Exit")
+    print("\n=====WLCOME TO MENU=====\n")
+    print("1.Add Task\n")
+    print("2.Remove Task\n")
+    print("3.Show Tasks\n")
+    print("4.Search Task\n")
+    print("5.Edit Task\n")
+    print("6.Mark Task Done\n")
+    print("7.Mark Task Pending\n")
+    print("0.Exit\n")
 
 
 def edit_menu():
-    print("======WELCOME TO EDIT MENU=====")
-    print("1.Edit Title")
-    print("2.Edit Description")
-    print("3.Edit Priority")
-    print("4.Edit Deadline")
-    print("5.Edit All")
-    print("6.Cancel")
+    print("======WELCOME TO EDIT MENU=====\n")
+    print("1.Edit Title\n")
+    print("2.Edit Description\n")
+    print("3.Edit Priority\n")
+    print("4.Edit Deadline\n")
+    print("5.Edit All\n")
+    print("6.Cancel\n")
 
 
 def main():
@@ -51,7 +53,7 @@ def main():
                 print("just number try agin")
                 continue
             try:
-                deadline_str = input("Enter a deadline(YYYY-MM-DD: )")
+                deadline_str = input("Enter a deadline(YYYY-MM-DD): ")
                 deadline = date.fromisoformat(deadline_str)
 
             except ValueError:
@@ -97,11 +99,6 @@ def main():
                 print(search)
             else:
                 print("task not found")
-
-        elif choice == 0:
-            print("bye")
-            storage.save_tasks(manager.tasks)
-            break
 
         elif choice == 5:
             edit_menu()
@@ -222,8 +219,42 @@ def main():
             else:
                 print("just a number from 1 to 6 ")
 
+        elif choice == 6:
+            try:
+
+                task_id = int(input("Enter a id: "))
+            except ValueError:
+                print("id must be number")
+                continue
+
+            done_mark = manager.mark_task_done(task_id)
+            if done_mark:
+                print("Task mark as done")
+            else:
+                print("task not found")
+
+        elif choice == 7:
+            try:
+
+                task_id = int(input("Enter a id: "))
+            except ValueError:
+                print("id must be number")
+                continue
+
+            pending_mark = manager.mark_task_pending(task_id)
+
+            if pending_mark:
+                print("Task Mark as Pending ")
+            else:
+                print("Task not found")
+
+        elif choice == 0:
+            print("bye")
+            storage.save_tasks(manager.tasks)
+            break
+
         else:
-            print("please just Enter a number from 0 to 5")
+            print("please just Enter a number from 0 to 7")
 
 
 if __name__ == "__main__":

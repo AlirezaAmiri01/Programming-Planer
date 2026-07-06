@@ -18,7 +18,7 @@ class Task:
         else:
             status = "pending"
 
-        return f"id          : {self.id}\ntitle       : {self.title}\ndescription : {self.description}\nstatus      : {status}\npriority    : {self.priority}\ncreated_at  : {self.created_at}\ndeadline     : {self.deadline} "
+        return f"\nid          : {self.id}\n\ntitle       : {self.title}\n\ndescription : {self.description}\n\nstatus      : {status}\n\npriority    : {self.priority}\n\ncreated_at  : {self.created_at}\n\ndeadline    : {self.deadline} "
 
     def mark_done(self):
         self.done = True
