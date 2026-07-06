@@ -73,3 +73,15 @@ class TaskManager:
                 return True
 
         return False
+
+    def sort_by_priority(self):
+        self.tasks.sort(key=lambda task: task.priority)
+
+    def sort_by_title(self):
+        self.tasks.sort(key=lambda task: task.title)
+
+    def sort_by_create_at(self):
+        self.tasks.sort(key=lambda task: task.create_at)
+
+    def sort_by_deadline(self):
+        self.tasks.sort(key=lambda task: task.deadline)
