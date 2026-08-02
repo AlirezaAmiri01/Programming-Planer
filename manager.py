@@ -1,18 +1,15 @@
-from task import Task
 import storage
 
 
 class TaskManager:
 
-    class TaskManager:
+    def __init__(self):
+        self.tasks = storage.load_tasks()
 
-        def __init__(self):
-            self.tasks = storage.load_tasks()
-
-            if self.tasks:
-                self.next_id = max(task.id for task in self.tasks) + 1
-            else:
-                self.next_id = 1
+        if self.tasks:
+            self.next_id = max(task.id for task in self.tasks) + 1
+        else:
+            self.next_id = 1
 
     def add_task(self, task):
         task.id = self.next_id
@@ -37,12 +34,13 @@ class TaskManager:
         return None
 
     def show_tasks(self):
-        return self.tasks
+        return self.tasks.copy()
 
     def edit_title(self, task_id, new_title):
         for task in self.tasks:
             if task.id == task_id:
                 task.title = new_title
+                storage.save_tasks(self.tasks)
                 return True
         return False
 
@@ -94,8 +92,8 @@ class TaskManager:
     def sort_by_title(self):
         self.tasks.sort(key=lambda task: task.title)
 
-    def sort_by_create_at(self):
-        self.tasks.sort(key=lambda task: task.create_at)
+    def sort_by_created_at(self):
+        self.tasks.sort(key=lambda task: task.created_at)
 
     def sort_by_deadline(self):
         self.tasks.sort(key=lambda task: task.deadline)
