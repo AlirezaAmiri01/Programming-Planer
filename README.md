@@ -81,7 +81,7 @@ Dashboard provides an overview of:
 clone the project
 
 ```
-git clone  <https://github.com/AlirezaAmiri01/Programming-Planer.git>
+git clone https://github.com/AlirezaAmiri01/Programming-Planer.git
 ```
 
 Go into project directory
