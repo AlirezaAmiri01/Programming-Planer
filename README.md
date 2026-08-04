@@ -1,38 +1,103 @@
-# Programming Planner
+# Planer - Task Management Application
 
-A simple command-line task manager written in Python.
+A modern desktop Task Management application built with Python and CustomTkinter.
 
-## Features
+The application allows users to create, edit, delete, search and organize their tasks with a clean dark UI.
 
-- Add tasks
-- Remove tasks
-- Search tasks
-- Edit tasks
-- Mark tasks as Done / Pending
-- Sort tasks
-- Save tasks to CSV
-- Automatically load tasks
+---
 
-## Technologies
+##  Project Preview
 
-- Python
-- CSV
-- OOP
-- Git
+### Dashboard
 
-## Project Structure
+![Dashboard](images/Dashboard.png)
 
-- task.py
-- manager.py
-- storage.py
-- main.py
+### Add Task
 
-## How to Run
+![Add Task](images/Add_Task.png)
 
-```bash
-python main.py
+### Tasks Page
+
+![Tasks](images/Tasks.png)
+
+### Edit Task
+
+![Edit Task](images/Edit.png)
+
+
+---
+
+#  Features
+
+## Task Management
+
+- Create new tasks
+- Edit existing tasks
+- Delete tasks
+- Mark tasks as completed or pending
+- Store tasks permanently
+
+
+## Search & Sorting
+
+- Search tasks by ID
+- Sort tasks by:
+  - Status
+  - Priority
+  - ID
+  - Deadline
+- Return to normal view with Show All button
+
+
+## Validation
+
+- Validate title
+- Validate description
+- Validate priority input
+- Smart date validation
+
+Accepted date formats:
+2026-8-8
+
+
+The application automatically handles date formatting.
+
+
+## Dashboard
+
+Dashboard provides an overview of:
+
+- Total tasks
+- Completed tasks
+- Pending tasks
+- Current date
+
+
+
+## RUN:
+
+# Installation
+
+clone the project
+
+```
+git clone  <https://github.com/AlirezaAmiri01/Programming-Planer.git>
 ```
 
-## Future Improvements
+Go into project directory
 
-- GUI with CustomTkinter
+install requirements:
+pip install -r requirements.txt
+
+Run:
+python main.py 
+
+
+## Techonologies
+
+- python
+- CustomTkinter
+- Object Oriented Programming
+- csv/File Storage
+- Tinker GUI
+
