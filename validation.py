@@ -1,5 +1,22 @@
 
 from datetime import date
+from datetime import date
+
+
+def parse_date(date_text):
+
+    parts = date_text.strip().split("-")
+
+    if len(parts) != 3:
+        raise ValueError
+
+    year, month, day = parts
+
+    return date(
+        int(year),
+        int(month),
+        int(day)
+    )
 
 
 def validate_title(title):
@@ -11,7 +28,7 @@ def validate_title(title):
     if title.isdigit():
         return False
 
-    return True
+    return title
 
 
 def validate_description(description):
@@ -23,7 +40,7 @@ def validate_description(description):
     if description.isdigit():
         return False
 
-    return True
+    return description
 
 
 def validate_priority(priority):
@@ -36,7 +53,7 @@ def validate_priority(priority):
         priority = int(priority)
         if priority < 0:
             return False
-        return True
+        return priority
 
     except ValueError:
         return False
@@ -48,14 +65,15 @@ def validate_deadline(deadline):
     deadline = deadline.strip()
 
     if not deadline:
-        return False
+        return None
 
     try:
-        deadline = date.fromisoformat(deadline)
+        deadline = parse_date(deadline)
+
         if deadline < date.today():
             return False
 
+        return deadline
+
     except ValueError:
         return False
-
-    return True

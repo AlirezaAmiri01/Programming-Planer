@@ -1,11 +1,10 @@
 import storage
+from storage import save_tasks, load_tasks
 
 
 class TaskManager:
-
     def __init__(self):
-        self.tasks = storage.load_tasks()
-
+        self.tasks = load_tasks()
         if self.tasks:
             self.next_id = max(task.id for task in self.tasks) + 1
         else:
@@ -18,16 +17,14 @@ class TaskManager:
         storage.save_tasks(self.tasks)
 
     def remove_task(self, task_id):
-
-        for task in self.tasks:
+        for index, task in enumerate(self.tasks):
             if task.id == task_id:
-                self.tasks.remove(task)
+                del self.tasks[index]
                 storage.save_tasks(self.tasks)
                 return True
         return False
 
     def search_task(self, task_id):
-
         for task in self.tasks:
             if task.id == task_id:
                 return task
@@ -74,7 +71,6 @@ class TaskManager:
                 task.mark_done()
                 storage.save_tasks(self.tasks)
                 return True
-
         return False
 
     def mark_task_pending(self, task_id):
@@ -83,17 +79,49 @@ class TaskManager:
                 task.mark_pending()
                 storage.save_tasks(self.tasks)
                 return True
-
         return False
 
     def sort_by_priority(self):
         self.tasks.sort(key=lambda task: task.priority)
+        storage.save_tasks(self.tasks)
 
-    def sort_by_title(self):
-        self.tasks.sort(key=lambda task: task.title)
+    def sort_by_id(self):
+        self.tasks.sort(key=lambda task: task.id)
+        storage.save_tasks(self.tasks)
 
-    def sort_by_created_at(self):
-        self.tasks.sort(key=lambda task: task.created_at)
+    def sort_by_status(self):
+        self.tasks.sort(key=lambda task: task.done)
+        storage.save_tasks(self.tasks)
 
     def sort_by_deadline(self):
-        self.tasks.sort(key=lambda task: task.deadline)
+        self.tasks.sort(
+            key=lambda task: task.deadline if task.deadline else date.max)
+        storage.save_tasks(self.tasks)
+
+    def reset_all_tasks(self):
+        self.tasks = []
+        self.next_id = 1
+        storage.save_tasks(self.tasks)
+
+    def mark_done(self, task):
+        task.mark_done()
+        storage.save_tasks(self.tasks)
+
+    def mark_pending(self, task):
+        task.mark_pending()
+        storage.save_tasks(self.tasks)
+
+    def delete_task(self, task):
+        if task in self.tasks:
+            self.tasks.remove(task)
+            storage.save_tasks(self.tasks)
+
+    def update_task(self, updated_task):
+        for index, task in enumerate(self.tasks):
+            if task.id == updated_task.id:
+                self.tasks[index] = updated_task
+                break
+        storage.save_tasks(self.tasks)
+
+    def get_tasks(self):
+        return self.tasks.copy()
