@@ -114,7 +114,6 @@ class AddTask(ctk.CTkFrame):
         title_valid = validate_title(title)
         description_valid = validate_description(description)
         priority_valid = validate_priority(priority)
-        deadline_valid = validate_deadline(deadline)
 
         errors = []
 
@@ -127,8 +126,11 @@ class AddTask(ctk.CTkFrame):
         if not priority_valid:
             errors.append("Invalid priority(must be number)")
 
-        if not deadline_valid:
-            errors.append("invalid format date(YYYY-M-D)")
+        deadline_valid = None
+        try:
+            deadline_valid = validate_deadline(deadline)
+        except ValueError as e:
+            errors.append(str(e))
 
         if errors:
             self.message_label.configure(
@@ -138,9 +140,8 @@ class AddTask(ctk.CTkFrame):
         self.message_label.configure(text="")
 
         priority = int(priority)
-        deadline = validate_deadline(deadline)
 
-        task = Task(title, description, priority, deadline)
+        task = Task(title, description, priority, deadline_valid)
 
         self.manager.add_task(task)
         self.message_label.configure(

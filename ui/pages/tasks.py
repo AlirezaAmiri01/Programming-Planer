@@ -25,8 +25,6 @@ class Tasks(ctk.CTkFrame):
         controls_frame = ctk.CTkFrame(self, fg_color="transparent")
         controls_frame.pack(fill="x", padx=30, pady=(0, 10))
 
-        # ---------- SORT MENU ----------
-
         ctk.CTkLabel(
             controls_frame,
             text="Sort:",
@@ -51,8 +49,6 @@ class Tasks(ctk.CTkFrame):
         )
 
         self.sort_menu.pack(side="left", padx=5)
-
-        # ---------- SEARCH ----------
 
         self.search_entry = ctk.CTkEntry(
             controls_frame,
@@ -103,15 +99,11 @@ class Tasks(ctk.CTkFrame):
             pady=(0, 20)
         )
 
-    # -------------------------
-
     def show_error(self, message):
         self.error_label.configure(text=message)
 
     def clear_error(self):
         self.error_label.configure(text="")
-
-    # -------------------------
 
     def render_tasks(self, tasks):
 
@@ -135,10 +127,6 @@ class Tasks(ctk.CTkFrame):
 
         self.render_tasks(self.manager.show_tasks())
 
-    # -------------------------
-    # SORT
-    # -------------------------
-
     def sort_tasks(self, value):
 
         if value == "Normal":
@@ -159,10 +147,6 @@ class Tasks(ctk.CTkFrame):
         elif value == "Deadline":
             self.manager.sort_by_deadline()
             self.load_tasks()
-
-    # -------------------------
-    # SEARCH
-    # -------------------------
 
     def search_task(self):
 
@@ -197,4 +181,4 @@ class Tasks(ctk.CTkFrame):
         self.search_entry.delete(0, "end")
         self.sort_menu.set("Normal")
         self.clear_error()
-        self.render_taskds(self.manager.get_tasks)
+        self.render_tasks(self.manager.show_tasks())

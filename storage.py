@@ -30,7 +30,7 @@ def save_tasks(tasks):
                 task.priority,
                 status,
                 task.created_at,
-                task.deadline
+                task.deadline if task.deadline else ""
             ])
 
 
@@ -56,15 +56,23 @@ def load_tasks():
 
         next(reader)
         for row in reader:
-            task = Task(
-                title=row[1],
-                description=row[2],
-                priority=int(row[3]),
-                deadline=date.fromisoformat(row[6])
-            )
-            task.id = int(row[0])
-            task.done = (row[4] == "Done")
-            task.created_at = date.fromisoformat(row[5])
+            try:
+                deadline = date.fromisoformat(row[6]) if row[6] else None
 
-            tasks.append(task)
+                task = Task(
+                    title=row[1],
+                    description=row[2],
+                    priority=int(row[3]),
+                    deadline=deadline
+                )
+                task.id = int(row[0])
+                task.done = (row[4] == "Done")
+                task.created_at = date.fromisoformat(row[5])
+
+                tasks.append(task)
+
+            except (ValueError, IndexError) as e:
+                print(f"Skipping corrupted row {row}: {e}")
+                continue
+
         return tasks

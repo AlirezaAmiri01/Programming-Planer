@@ -90,9 +90,9 @@ class TaskCard(ctk.CTkFrame):
 
     def change_status(self):
         if self.done_checkbox.get():
-            self.manager.mark_done(self.task)
+            self.manager.mark_task_done(self.task.id)
         else:
-            self.manager.mark_pending(self.task)
+            self.manager.mark_task_pending(self.task.id)
         self.update_status()
 
     def update_status(self):
@@ -104,7 +104,7 @@ class TaskCard(ctk.CTkFrame):
                 text="Status: Pending", text_color=WARNING_TEXT)
 
     def delete_task(self):
-        self.manager.delete_task(self.task)
+        self.manager.remove_task(self.task.id)
         self.destroy()
 
     def edit_task(self):

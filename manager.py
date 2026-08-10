@@ -1,5 +1,6 @@
 import storage
 from storage import save_tasks, load_tasks
+from datetime import date
 
 
 class TaskManager:
@@ -103,25 +104,9 @@ class TaskManager:
         self.next_id = 1
         storage.save_tasks(self.tasks)
 
-    def mark_done(self, task):
-        task.mark_done()
-        storage.save_tasks(self.tasks)
-
-    def mark_pending(self, task):
-        task.mark_pending()
-        storage.save_tasks(self.tasks)
-
-    def delete_task(self, task):
-        if task in self.tasks:
-            self.tasks.remove(task)
-            storage.save_tasks(self.tasks)
-
     def update_task(self, updated_task):
         for index, task in enumerate(self.tasks):
             if task.id == updated_task.id:
                 self.tasks[index] = updated_task
                 break
         storage.save_tasks(self.tasks)
-
-    def get_tasks(self):
-        return self.tasks.copy()

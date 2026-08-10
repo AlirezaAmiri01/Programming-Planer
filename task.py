@@ -17,8 +17,9 @@ class Task:
             status = "Done"
         else:
             status = "pending"
-        created = self.created_at.strftime("%Y/%m/%m/%d")
-        deadline = self.deadline.strftime("%Y/%m/%d")
+        created = self.created_at.strftime("%Y/%m/%d")
+        deadline = self.deadline.strftime(
+            "%Y/%m/%d") if self.deadline else "No deadline"
 
         return (
             f"id          : {self.id}\n"

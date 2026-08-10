@@ -97,10 +97,11 @@ class EditTask(ctk.CTkFrame):
             return
 
         deadline_text = self.deadline_entry.get().strip()
-
-        deadline = validate_deadline(deadline_text)
-        if deadline is False:
-            self.show_error("Invalid date format. (YYYY-M-D)")
+        try:
+            deadline = validate_deadline(deadline_text)
+        except ValueError as e:
+            self.show_error(str(e))
+            return
 
         self.task.title = title
         self.task.description = description
