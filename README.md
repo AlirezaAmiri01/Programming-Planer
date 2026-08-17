@@ -63,6 +63,13 @@ Accepted date formats:
 The application automatically handles date formatting.
 
 
+
+## Error Handling
+
+- Corrupted or invalid rows in the CSV file are skipped instead of crashing the app
+- Invalid dates and priorities are caught and reported to the user, not thrown as raw exceptions
+
+
 ## Dashboard
 
 Dashboard provides an overview of:
@@ -74,30 +81,67 @@ Dashboard provides an overview of:
 
 
 
-## RUN:
+## RUN
 
-# Installation
+### Installation
 
-clone the project
+Clone the project:
 
-```
+```bash
 git clone https://github.com/AlirezaAmiri01/Programming-Planer.git
 ```
 
-Go into project directory
+Go into the project directory, then install requirements:
 
-install requirements:
+```bash
 pip install -r requirements.txt
+```
 
 Run:
-python main.py 
 
+```bash
+python main.py
+```
 
-## Techonologies
+### Run tests
 
-- python
+```bash
+python -m unittest tests.test_manager
+python -m unittest tests.test_validation
+```
+
+> Note: some tests call `reset_all_tasks()`, which clears all tasks. Back up `task.csv` before running tests if you have real data you want to keep.
+
+---
+
+## Building a standalone .exe (Windows)
+
+This project can be packaged into a single Windows executable using [PyInstaller](https://pyinstaller.org/).
+
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed --name "Planner" --icon="assets/icon.ico" main.py
+```
+
+The finished executable will be at:
+
+```
+dist/Planner.exe
+```
+
+When running as a bundled `.exe`, the app stores `task.csv` in `%APPDATA%\Planner\` instead of next to the executable. This means the data persists correctly no matter where the `.exe` is moved or copied.
+
+---
+
+## Technologies
+
+- Python
 - CustomTkinter
 - Object Oriented Programming
-- csv/File Storage
-- Tinker GUI
+- CSV / File Storage
+- Tkinter GUI
+- unittest
 
+## Future Improvements
+
+- Replace CSV storage with SQLite
