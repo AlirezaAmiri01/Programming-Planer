@@ -8,14 +8,14 @@ def get_base_path():
     app_data = os.getenv("APPDATA")
 
     if app_data:
-        base_path = Path(app_data) / "Planer"
+        base_path = Path(app_data) / "Planner"
 
     else:
-        base_path = Path.home() / "AppData" / "Roaming" / "Planer"
+        base_path = Path.home() / "AppData" / "Roaming" / "Planner"
 
     base_path.mkdir(parents=True,exist_ok=True)
     return base_path
-FILE_PATH = Path(__file__).parent / "task.csv"
+FILE_PATH = get_base_path() / "task.csv"
 
 
 def save_tasks(tasks):
