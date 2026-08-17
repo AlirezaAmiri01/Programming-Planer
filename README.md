@@ -5,6 +5,9 @@ A modern desktop Task Management application built with Python and CustomTkinter
 The application allows users to create, edit, delete, search and organize their tasks with a clean dark UI.
 
 ---
+## Download
+
+[Download the latest release)[https://github.com/AlirezaAmiri01/Programming-Planer/releases/download/V1.0.0/Planer.1.exe] — Windows `.exe`, no installation needed.
 
 ##  Project Preview
 
